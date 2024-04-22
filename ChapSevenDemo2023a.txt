@@ -1,0 +1,175 @@
+Romello Turner
+Figure 7.7
+
+import kivy
+kivy.require('1.0.8')
+import openpyxl
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
+
+class AllApp(App):
+    layout = BoxLayout(orientation='horizontal')
+    layout_questions = GridLayout(cols=1, size_hint=(None, None),
+                                  width=400, height=5500)
+
+    def get_questions(self, subject):
+        print(subject)
+        wb = openpyxl.load_workbook('data.xlsx')
+        sheet = wb[subject]
+        data = []
+        for row in range(2, sheet.max_row+1):
+            question = sheet.cell(row=row, column=1).value
+            data.append(question)
+        return self.add_questions(data)
+
+    def add_questions(self, data):
+        self.layout_questions.clear_widgets()
+        for question in data:
+            question_button = Button(text=question, size=(480, 40), size_hint=(1, None), background_color=(1, 1, 1, 1))
+            self.layout_questions.add_widget(question_button)
+
+    def build(self):
+        layout_subjects = GridLayout(cols=1, size_hint=(None, None),
+                                     width=400, height=1000)
+        subjects = ['Logic Building', 'SQL Server', 'Advanced Excel', 'Programming in Java', 'HTML5, CSS, JavaScript, JQuery', 'Web Development using Servlet and JSP', 'Android Development using Java', 'Hibernate, Spring and JSF', 'Application Testing using JUnit', 'Programming using C#', 'Web development using .Net Framwork', 'Cross Platform app for Microsoft PlayStore', 'distributed application with .net framework', 'Machine Learning using python', 'Big Data using R and Python']
+        subjects_d = {}
+        for subject in subjects:
+            subjects_d[subject] = subject
+        print(subjects_d)
+        for k, v in subjects_d.items():
+            k_button = Button(text=v, size=(480, 40), size_hint=(1, None), background_color=(0.5, 0.5, 0.5, 1))
+            k_button.bind(on_press=lambda instance, subject=v: self.get_questions(subject))
+            layout_subjects.add_widget(k_button)
+
+        root = BoxLayout()
+        scroll_subject = ScrollView(size_hint=(1, 1))
+        scroll_question = ScrollView(size_hint=(1, 1))
+        root.add_widget(self.layout)
+        self.layout.add_widget(scroll_subject)
+        scroll_subject.add_widget(layout_subjects)
+        self.layout.add_widget(scroll_question)
+        scroll_question.add_widget(self.layout_questions)
+
+        return root
+
+if __name__ == '__main__':
+    AllApp().run()
+
+
+Figure 7.8
+
+import kivy
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+kivy.require("1.0.6")
+
+class LabelTestingApp(App):
+	def build(self):
+		return Button(text='I can Display information over Screen')
+		
+if __name__=='__main__':
+	LabelTestingApp().run();
+
+Figure 7.9
+
+from kivy.app import App
+
+class HelloApp(App):
+	pass
+	
+if__name__='__main__':
+	HelloApp().run()
+	
+#filename hello.kv
+BoxLayout:
+	orientation:"vertical"
+	Button:
+		text:'Button1'
+	Button:
+		text:'Button2'
+	Button:
+		text:'Button3'
+
+Figure 7.10
+
+from kivy.app import App
+
+from kivy.uix.widget import Widget
+class MyCustomForm(Widget):
+	pass
+class MyApp(App):
+	def build(self):
+		return MyCustomForm()
+		
+if __name__=="__main__":
+	MyApp().run()
+	
+	#####
+#filename my.kv
+
+<MyCustomForm@BoxLayout>:
+	orientation:"vertical"
+	BoxLayout:
+		orientation:"vertical"
+		BoxLayout:
+			orientation:"vertical"
+			Button:
+				text:'Add'
+			Button:
+				text:'Remove'
+			FileChooserListView:
+				id:filechooser
+				#item_strings:["Tarkeshwar","Swapnil","Anand","Devendra"]
+			BoxLayout:
+				orientation:"vertical"
+			TextInput:
+				hint:'Address'
+				multiline:False
+
+Figure 7.11
+
+import kivy.uix.boxlayout
+import kivy.uix.textinput
+import kivy.uix.label
+import kivy.uix.button
+from kivy.app import App
+
+class SimpleApp(App):
+	def build(self):
+		self.textInput=kivy.uix.textinput.TextInput()
+		self.label=kivy.uix.label.Label(text="My name is Romello Turner.")
+		self.button=kivy.uix.button.Button(text="Click Me.")
+		self.button.bind(on_press=self.displayMessage)
+		self.boxLayout=kivy.uix.boxlayout.BoxLayout(orientation="vertical")
+		self.boxLayout.add_widget(self.textInput)
+		self.boxLayout.add_widget(self.label)
+		self.boxLayout.add_widget(self.button)
+		return self.boxLayout
+		
+	def displayMessage(self,btn):
+		self.label.text = self.textInput.text
+		
+if __name__="__main__":
+	simpleApp=SimpleApp()
+	simpleApp.run()
+
+Figure 7.12
+
+from kivy.app import App
+from kivy.uix boxlayout import BoxLayout
+from kivy.uix.button import Button
+class MainApplication(App):
+	def build(self):
+		layout = BoxLayout(orientation='horizontal')
+		btn1 = Button(text='Hello')
+		btn2= Button(text='World')
+		layout.add_widget(btn1)
+		layout.add_widget (btn2)
+		return layout
+		
+if __name__=='__main__':
+	MainApplication().run()
