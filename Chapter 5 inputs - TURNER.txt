@@ -1,0 +1,97 @@
+CHAPTER 5 INPUTS FOR MULTIPLE TABLE QUERIES - ROMELLO TURNER
+
+FIGURE 5.2 INPUT - ROMELLO TURNER
+
+SQL> SELECT CUST_ID, CUSTOMER_11.FIRST_NAME, CUSTOMER_11.LAST_NAME,
+  2  SALES_REP_11.REP_ID, SALES_REP_11.FIRST_NAME,
+  3  SALES_REP_11.LAST_NAME
+  4  FROM CUSTOMER_11, SALES_REP_11
+  5  WHERE (CUSTOMER_11.REP_ID = SALES_REP_11.REP_ID) AND
+  6  (CREDIT_LIMIT=500);
+
+CUS FIRST_NAME           LAST_NAME            RE FIRST_NAME           LAST_NAME
+--- -------------------- -------------------- -- -------------------- --------------------
+126 Joey                 Smith                05 Susan                Garcia
+227 Sandra               Pincher              15 Donna                Smith
+294 Samantha             Smith                10 Richard              Miller
+492 Elmer                Jackson              10 Richard              Miller
+616 Sally                Cruz                 15 Donna                Smith
+795 Randy                Blacksmith           05 Susan                Garcia
+
+6 rows selected.
+
+FIGURE 5.3 INPUT - ROMELLO TURNER
+
+SQL> SELECT INVOICE_NUM, INVOICE_LINE_11.ITEM_ID, DESCRIPTION,
+  2  QUANTITY, QUOTED_PRICE, PRICE
+  3  FROM INVOICE_LINE_11, ITEM_11
+  4  WHERE (INVOICE_LINE_11.ITEM_ID = ITEM_11.ITEM_ID);
+
+INVOI ITEM DESCRIPTION                      QUANTITY QUOTED_PRICE      PRICE
+----- ---- ------------------------------ ---------- ------------ ----------
+14219 AD72 Dog Feeding Station                     2        79.99      79.99
+14216 CA75 Enclosed Cat Litter Station             3        37.99      39.99
+14219 DT12 Dog Toy Gift Set                        4        39.99      39.99
+14228 FS42 Aquarium (55 Gallon)                    1       124.99     124.99
+14222 LD14 Locking Small Dog Door                  1        47.99      49.99
+14228 PF19 Pump and Filter Kit                     1        74.99      74.99
+14231 UF39 Underground Fence System                2       189.99     199.99
+14233 WB49 Insulated Water Bucket                  4        74.95      79.99
+14233 QB92 Quilted Stable Blanket                  4       109.95     119.99
+14237 LP73 Large Pet Carrier                       3        54.95      49.99
+
+10 rows selected.
+
+FIGURE 5.4 INPUT - ROMELLO TURNER
+
+SQL> SELECT DESCRIPTION
+  2  FROM INVOICE_LINE_11, ITEM_11
+  3  WHERE (INVOICE_LINE_11.ITEM_ID = ITEM_11.ITEM_ID) AND
+  4  (INVOICE_NUM = '14233');
+
+DESCRIPTION
+------------------------------
+Insulated Water Bucket
+Quilted Stable Blanket
+
+FIGURE 5.5 INPUT - ROMELLO TURNER
+
+SQL> SELECT DESCRIPTION
+  2  FROM ITEM_11
+  3  WHERE ITEM_ID IN (SELECT ITEM_ID
+  4  FROM INVOICE_LINE_11
+  5  WHERE (INVOICE_NUM = '14233')
+  6  );
+
+DESCRIPTION
+------------------------------
+Insulated Water Bucket
+Quilted Stable Blanket
+
+FIGURE 5.7 INPUT - ROMELLO TURNER
+
+SQL> SELECT INVOICE_NUM, INVOICE_DATE
+  2  FROM INVOICES_11
+  3  WHERE EXISTS (SELECT*
+  4  FROM INVOICE_LINE_11
+  5  WHERE (INVOICES_11.INVOICE_NUM = INVOICE_LINE_11.INVOICE_NUM)
+  6  AND (ITEM_ID = 'KH81')
+  7  );
+
+INVOI INVOICE_D
+----- ---------
+14224 16-NOV-21
+14233 18-NOV-21
+
+FIGURE 5.9 INPUT - ROMELLO TURNER
+
+SQL> SELECT DISTINCT INVOICES_11.INVOICE_NUM, INVOICE_DATE
+  2  FROM INVOICE_LINE_11, INVOICES_11, ITEM_11
+  3  WHERE (INVOICE_LINE_11.INVOICE_NUM = INVOICES_11.INVOICE_NUM)
+  4  AND
+  5  (INVOICE_LINE_11.ITEM_ID = ITEM_11.ITEM_ID) AND (LOCATION = 'C');
+
+INVOI INVOICE_D
+----- ---------
+14216 15-NOV-21
+14233 18-NOV-21

@@ -1,0 +1,148 @@
+CHAPTER 4 INPUTS FOR SINGLE TABLE QUERIES - ROMELLO TURNER
+
+Figure 4.1 - INPUT - ROMELLO TURNER
+
+SQL> SELECT CUST_ID, FIRST_NAME, LAST_NAME, BALANCE
+  2  FROM CUSTOMER_11;
+
+CUS FIRST_NAME           LAST_NAME               BALANCE
+--- -------------------- -------------------- ----------
+126 Joey                 Smith                     80.68
+182 Billy                Rufton                    43.13
+227 Sandra               Pincher                  156.38
+294 Samantha             Smith                      58.6
+314 Tom                  Rascal                    17.25
+435 James                Gonzalez                    230
+492 Elmer                Jackson                    45.2
+543 Angie                Hendricks                   315
+616 Sally                Cruz                       8.33
+721 Leslie               Smith                    166.65
+795 Randy                Blacksmith                 61.5
+
+CUS FIRST_NAME           LAST_NAME               BALANCE
+--- -------------------- -------------------- ----------
+375 Melanie              Jackson                  252.25
+
+12 rows selected.
+
+Figure 4.5 INPUT - ROMELLO TURNER
+
+SQL> SELECT LAST_NAME
+  2  FROM CUSTOMER_11
+  3  WHERE CITY = 'Cody';
+
+LAST_NAME
+--------------------
+Smith
+Rascal
+Blacksmith
+
+Figure 4.9 INPUT - ROMELLO TURNER
+
+SQL> SELECT DESCRIPTION
+  2  FROM ITEM_11
+  3  WHERE (LOCATION='B') OR (ON_HAND >15);
+
+DESCRIPTION
+------------------------------
+Dog Feeding Station
+Feathers Bird Cage (12x24x18)
+Dog Toy Gift Set
+Fly Mask with Ears
+Wild Bird Food (25 lb)
+Small Pet Carrier
+Insulated Water Bucket
+Quilted Stable Blanket
+Large Pet Carrier
+
+9 rows selected.
+
+Figure 4.12 INPUT - ROMELLO TURNER
+
+SQL> SELECT CUST_ID, FIRST_NAME, LAST_NAME, BALANCE
+  2  FROM CUSTOMER_11
+  3  WHERE (BALANCE BETWEEN 125 AND 250);
+
+CUS FIRST_NAME           LAST_NAME               BALANCE
+--- -------------------- -------------------- ----------
+227 Sandra               Pincher                  156.38
+435 James                Gonzalez                    230
+721 Leslie               Smith                    166.65
+
+Figure 4.16 INPUT - ROMELLO TURNER
+
+SQL> SELECT CUST_ID, FIRST_NAME, LAST_NAME, CREDIT_LIMIT - BALANCE AS AVAILABLE_CREDIT
+  2  FROM CUSTOMER_11
+  3  WHERE (CREDIT_LIMIT - BALANCE) >= 400;
+
+CUS FIRST_NAME           LAST_NAME            AVAILABLE_CREDIT
+--- -------------------- -------------------- ----------------
+126 Joey                 Smith                          419.32
+182 Billy                Rufton                         706.87
+294 Samantha             Smith                           441.4
+435 James                Gonzalez                          770
+492 Elmer                Jackson                         454.8
+543 Angie                Hendricks                         435
+616 Sally                Cruz                           491.67
+721 Leslie               Smith                          833.35
+795 Randy                Blacksmith                      438.5
+
+9 rows selected.
+
+Figure 4.17 INPUT - ROMELLO TURNER
+
+SQL> SELECT CUST_ID, FIRST_NAME, LAST_NAME, ADDRESS, CITY, STATE, POSTAL
+  2  FROM CUSTOMER_11
+  3  WHERE (ADDRESS LIKE '%Rock%');
+
+CUS FIRST_NAME           LAST_NAME            ADDRESS              CITY            ST POSTA
+--- -------------------- -------------------- -------------------- --------------- -- -----
+294 Samantha             Smith                14 Rock Ln           Ralston         WY 82440
+435 James                Gonzalez             16 Rockway Rd        Wapiti          WY 82450
+
+
+Figure 4.18 INPUT - ROMELLO TURNER
+
+SQL> SELECT CUST_ID, FIRST_NAME, LAST_NAME, CREDIT_LIMIT
+  2  FROM CUSTOMER_11
+  3  WHERE (CREDIT_LIMIT IN (500, 750, 1000));
+
+CUS FIRST_NAME           LAST_NAME            CREDIT_LIMIT
+--- -------------------- -------------------- ------------
+126 Joey                 Smith                         500
+182 Billy                Rufton                        750
+227 Sandra               Pincher                       500
+294 Samantha             Smith                         500
+435 James                Gonzalez                     1000
+492 Elmer                Jackson                       500
+543 Angie                Hendricks                     750
+616 Sally                Cruz                          500
+721 Leslie               Smith                        1000
+795 Randy                Blacksmith                    500
+
+10 rows selected.
+
+Figure 4.33 INPUT - ROMELLO TURNER
+
+SQL> SELECT DISTINCT (INVOICE_NUM)
+  2  FROM INVOICE_LINE_11
+  3  WHERE ITEM_ID IN (SELECT ITEM_ID
+  4  FROM ITEM_11
+  5  WHERE (CATEGORY = 'HOR')
+  6  );
+
+INVOI
+-----
+14233
+
+Figure 4.38 INPUT - ROMELLO TURNER
+
+SQL> SELECT CREDIT_LIMIT, COUNT(*)
+  2  FROM CUSTOMER_11
+  3  GROUP BY CREDIT_LIMIT
+  4  HAVING COUNT(*) > 2
+  5  ORDER BY CREDIT_LIMIT;
+
+CREDIT_LIMIT   COUNT(*)
+------------ ----------
+         500          6

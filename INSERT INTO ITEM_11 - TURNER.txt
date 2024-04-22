@@ -1,0 +1,30 @@
+INSERT INTO ITEM_11
+VALUES('AD72', 'Dog Feeding Station', '12', 'DOG', 'B', '79.99');
+INSERT INTO ITEM_11
+VALUES('BC33', 'Feathers Bird Cage (12x24x18)', '10', 'BRD', 'B', '79.99');
+INSERT INTO ITEM_11
+VALUES('CA75', 'Enclosed Cat Litter Station', '15', 'CAT', 'C', '39.99');
+INSERT INTO ITEM_11
+VALUES('DT12', 'Dog Toy Gift Set', '27', 'DOG', 'B', '39.99');
+INSERT INTO ITEM_11
+VALUES('FM23', 'Fly Mask with Ears', '41', 'HOR', 'C', '24.95');
+INSERT INTO ITEM_11
+VALUES('FS39', 'Folding Saddle Stand', '12', 'HOR', 'C', '39.99');
+INSERT INTO ITEM_11
+VALUES('FS42', 'Aquarium (55 Gallon)', '5', 'FSH', 'A', '124.99');
+INSERT INTO ITEM_11
+VALUES('KHS1', 'Wild Bird Food (25 lb)', '24', 'BRD', 'C', '19.99');
+INSERT INTO ITEM_11
+VALUES('LD14', 'Locking Small Dog Door', '14', 'DOG', 'A', '49.99');
+INSERT INTO ITEM_11
+VALUES('LP73', 'Large Pet Carrier', '23', 'DOG', 'A', '49.99');
+INSERT INTO ITEM_11
+VALUES('PF19', 'Pump and Filter Kit', '5', 'FSH', 'A', '74.99');
+INSERT INTO ITEM_11
+VALUES('QB92', 'Quilted Stable Blanket', '32', 'HOR', 'C', '119.99');
+INSERT INTO ITEM_11
+VALUES('SP91', 'Small Pet Carrier', '18', 'CAT', 'B', '39.99');
+INSERT INTO ITEM_11
+VALUES('UF39', 'Underground Fence System', '7', 'DOG', 'A', '199.99');
+INSERT INTO ITEM_11
+VALUES('WB49', 'Insulated Water Bucket', '34', 'HOR', 'C', '79.99');

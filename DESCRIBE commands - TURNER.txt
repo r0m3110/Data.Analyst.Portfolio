@@ -1,0 +1,55 @@
+DESCRIBE COMMANDS
+
+SQL> describe SALES_REP_11;
+ Name                                                                   Null?    Type
+ ---------------------------------------------------------------------- -------- -----------------------------------------------
+ REP_ID                                                                 NOT NULL CHAR(2)
+ FIRST_NAME                                                             NOT NULL CHAR(20)
+ LAST_NAME                                                              NOT NULL CHAR(20)
+ ADDRESS                                                                         CHAR(20)
+ CITY                                                                            CHAR(15)
+ STATE                                                                           CHAR(5)
+ POSTAL                                                                          CHAR(5)
+ CELL_PHONE                                                                      CHAR(12)
+ COMMISSION                                                                      NUMBER(7,2)
+ RATE                                                                            NUMBER(3,2)
+
+SQL> describe CUSTOMER_11;
+ Name                                                                   Null?    Type
+ ---------------------------------------------------------------------- -------- -----------------------------------------------
+ CUST_ID                                                                NOT NULL CHAR(3)
+ FIRST_NAME                                                             NOT NULL CHAR(20)
+ LAST_NAME                                                              NOT NULL CHAR(20)
+ ADDRESS                                                                         CHAR(20)
+ CITY                                                                            CHAR(15)
+ STATE                                                                           CHAR(2)
+ POSTAL                                                                          CHAR(2)
+ EMAIL                                                                           CHAR(25)
+ BALANCE                                                                         NUMBER(7,2)
+ CREDIT_LIMIT                                                                    NUMBER(7,2)
+ REP_ID                                                                          CHAR(2)
+
+SQL> describe ITEM_11;
+ Name                                                                   Null?    Type
+ ---------------------------------------------------------------------- -------- -----------------------------------------------
+ ITEM_ID                                                                NOT NULL CHAR(4)
+ DESCRIPTION                                                                     CHAR(30)
+ ON_HAND                                                                         NUMBER(4)
+ CATEGORY                                                                        CHAR(3)
+ LOCATION                                                                        CHAR(1)
+ PRICE                                                                           NUMBER(6,2)
+
+SQL> describe INVOICES_11;
+ Name                                                                   Null?    Type
+ ---------------------------------------------------------------------- -------- -----------------------------------------------
+ INVOICE_NUM                                                            NOT NULL CHAR(5)
+ INVOICE_DATE                                                                    DATE
+ CUST_ID                                                                         CHAR(3)
+
+SQL> describe INVOICE_LINE_11;
+ Name                                                                   Null?    Type
+ ---------------------------------------------------------------------- -------- -----------------------------------------------
+ INVOICE_NUM                                                            NOT NULL CHAR(5)
+ ITEM_ID                                                                NOT NULL CHAR(4)
+ QUANTITY                                                                        NUMBER(3)
+ QUOTED_PRICE                                                                    NUMBER(6,2)

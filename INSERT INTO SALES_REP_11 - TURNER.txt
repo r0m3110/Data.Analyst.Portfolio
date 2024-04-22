@@ -1,0 +1,8 @@
+INSERT INTO SALES_REP_11
+	VALUES('05', 'Susan', 'Garcia', '42 Mountain Ln', 'Cody', 'WY', '82414', '307-824-1245', '12743.16', '0.04');
+INSERT INTO SALES_REP_11
+	VALUES('10', 'Richard', 'Miller', '87 Pikes Dr', 'Ralston', 'WY', '82440', '307-406-4321', '2872.11', '0.06');
+INSERT INTO SALES_REP_11
+	VALUES('15', 'Donna', 'Smith', '312 Oak Rd', 'Powell', 'WY', '82440', '307-982-8401', '14912.92', '0.04');
+INSERT INTO SALES_REP_11
+	VALUES('20', 'Daniel', 'Smith', '19 Lookout Dr', 'Elk Butte', 'WY', '82433', '307-883-9481', '0.00', '0.04');
